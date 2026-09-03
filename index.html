@@ -1,61 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ruleta 1–72</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ruleta 1 al 72</title>
 <style>
-body{margin:0;background:#101827;color:#fff;font-family:Arial,sans-serif;text-align:center;padding:16px}
-main{max-width:600px;margin:auto}h1{font-size:28px;margin:5px}p{color:#cbd5e1}
-.pointer{width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-top:30px solid #ef4444;margin:8px auto -2px;position:relative;z-index:3}
-.wheelbox{width:min(94vw,540px);margin:auto}
-#wheel{width:100%;display:block;transform-origin:50% 50%;transition:transform 4.5s cubic-bezier(.12,.78,.15,1)}
-#wheel text{font-size:11px;font-weight:900;fill:#111827}
-#result{font-size:56px;font-weight:900;min-height:65px;margin:10px}
-#status{min-height:24px;color:#cbd5e1}
-button{margin:12px;padding:16px 38px;border:0;border-radius:15px;background:#22c55e;color:#052e16;font-size:19px;font-weight:900}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:#111;color:white;font-family:Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
+h1{margin:0 0 10px;font-size:28px}
+#wheelWrap{position:relative;width:min(92vw,520px);aspect-ratio:1}
+svg{width:100%;height:100%;display:block;transition:transform 4.8s cubic-bezier(.12,.72,.12,1)}
+.pointer{position:absolute;z-index:5;top:-3px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:17px solid transparent;border-right:17px solid transparent;border-top:34px solid #e21b23;filter:drop-shadow(0 2px 2px #000)}
+button{margin-top:18px;padding:15px 35px;border:0;border-radius:12px;background:#e21b23;color:#fff;font-size:20px;font-weight:bold;cursor:pointer}
 button:disabled{opacity:.5}
+#result{margin-top:12px;font-size:25px;font-weight:bold;min-height:30px}
 </style>
 </head>
 <body>
-<main>
-<h1>🎰 RULETA 1–72</h1>
-<p>Todos los números tienen la misma probabilidad.</p>
+<h1>🎰 Ruleta 1 al 72</h1>
+<div id="wheelWrap">
 <div class="pointer"></div>
-<div class="wheelbox">
-<svg id="wheel" viewBox="0 0 500 500">
-<circle cx="250" cy="250" r="238" fill="#f8fafc" stroke="#fff" stroke-width="8"/>
-<circle cx="250" cy="250" r="224" fill="none" stroke="#9ca3af" stroke-width="2"/>
-<g><text x="259.0" y="43.2" text-anchor="middle" dominant-baseline="middle">1</text><text x="277.0" y="44.8" text-anchor="middle" dominant-baseline="middle">2</text><text x="294.8" y="47.9" text-anchor="middle" dominant-baseline="middle">3</text><text x="312.2" y="52.6" text-anchor="middle" dominant-baseline="middle">4</text><text x="329.2" y="58.8" text-anchor="middle" dominant-baseline="middle">5</text><text x="345.6" y="66.4" text-anchor="middle" dominant-baseline="middle">6</text><text x="361.2" y="75.4" text-anchor="middle" dominant-baseline="middle">7</text><text x="376.0" y="85.8" text-anchor="middle" dominant-baseline="middle">8</text><text x="389.8" y="97.4" text-anchor="middle" dominant-baseline="middle">9</text><text x="402.6" y="110.2" text-anchor="middle" dominant-baseline="middle">10</text><text x="414.2" y="124.0" text-anchor="middle" dominant-baseline="middle">11</text><text x="424.6" y="138.8" text-anchor="middle" dominant-baseline="middle">12</text><text x="433.6" y="154.4" text-anchor="middle" dominant-baseline="middle">13</text><text x="441.2" y="170.8" text-anchor="middle" dominant-baseline="middle">14</text><text x="447.4" y="187.8" text-anchor="middle" dominant-baseline="middle">15</text><text x="452.1" y="205.2" text-anchor="middle" dominant-baseline="middle">16</text><text x="455.2" y="223.0" text-anchor="middle" dominant-baseline="middle">17</text><text x="456.8" y="241.0" text-anchor="middle" dominant-baseline="middle">18</text><text x="456.8" y="259.0" text-anchor="middle" dominant-baseline="middle">19</text><text x="455.2" y="277.0" text-anchor="middle" dominant-baseline="middle">20</text><text x="452.1" y="294.8" text-anchor="middle" dominant-baseline="middle">21</text><text x="447.4" y="312.2" text-anchor="middle" dominant-baseline="middle">22</text><text x="441.2" y="329.2" text-anchor="middle" dominant-baseline="middle">23</text><text x="433.6" y="345.6" text-anchor="middle" dominant-baseline="middle">24</text><text x="424.6" y="361.2" text-anchor="middle" dominant-baseline="middle">25</text><text x="414.2" y="376.0" text-anchor="middle" dominant-baseline="middle">26</text><text x="402.6" y="389.8" text-anchor="middle" dominant-baseline="middle">27</text><text x="389.8" y="402.6" text-anchor="middle" dominant-baseline="middle">28</text><text x="376.0" y="414.2" text-anchor="middle" dominant-baseline="middle">29</text><text x="361.2" y="424.6" text-anchor="middle" dominant-baseline="middle">30</text><text x="345.6" y="433.6" text-anchor="middle" dominant-baseline="middle">31</text><text x="329.2" y="441.2" text-anchor="middle" dominant-baseline="middle">32</text><text x="312.2" y="447.4" text-anchor="middle" dominant-baseline="middle">33</text><text x="294.8" y="452.1" text-anchor="middle" dominant-baseline="middle">34</text><text x="277.0" y="455.2" text-anchor="middle" dominant-baseline="middle">35</text><text x="259.0" y="456.8" text-anchor="middle" dominant-baseline="middle">36</text><text x="241.0" y="456.8" text-anchor="middle" dominant-baseline="middle">37</text><text x="223.0" y="455.2" text-anchor="middle" dominant-baseline="middle">38</text><text x="205.2" y="452.1" text-anchor="middle" dominant-baseline="middle">39</text><text x="187.8" y="447.4" text-anchor="middle" dominant-baseline="middle">40</text><text x="170.8" y="441.2" text-anchor="middle" dominant-baseline="middle">41</text><text x="154.4" y="433.6" text-anchor="middle" dominant-baseline="middle">42</text><text x="138.8" y="424.6" text-anchor="middle" dominant-baseline="middle">43</text><text x="124.0" y="414.2" text-anchor="middle" dominant-baseline="middle">44</text><text x="110.2" y="402.6" text-anchor="middle" dominant-baseline="middle">45</text><text x="97.4" y="389.8" text-anchor="middle" dominant-baseline="middle">46</text><text x="85.8" y="376.0" text-anchor="middle" dominant-baseline="middle">47</text><text x="75.4" y="361.2" text-anchor="middle" dominant-baseline="middle">48</text><text x="66.4" y="345.6" text-anchor="middle" dominant-baseline="middle">49</text><text x="58.8" y="329.2" text-anchor="middle" dominant-baseline="middle">50</text><text x="52.6" y="312.2" text-anchor="middle" dominant-baseline="middle">51</text><text x="47.9" y="294.8" text-anchor="middle" dominant-baseline="middle">52</text><text x="44.8" y="277.0" text-anchor="middle" dominant-baseline="middle">53</text><text x="43.2" y="259.0" text-anchor="middle" dominant-baseline="middle">54</text><text x="43.2" y="241.0" text-anchor="middle" dominant-baseline="middle">55</text><text x="44.8" y="223.0" text-anchor="middle" dominant-baseline="middle">56</text><text x="47.9" y="205.2" text-anchor="middle" dominant-baseline="middle">57</text><text x="52.6" y="187.8" text-anchor="middle" dominant-baseline="middle">58</text><text x="58.8" y="170.8" text-anchor="middle" dominant-baseline="middle">59</text><text x="66.4" y="154.4" text-anchor="middle" dominant-baseline="middle">60</text><text x="75.4" y="138.8" text-anchor="middle" dominant-baseline="middle">61</text><text x="85.8" y="124.0" text-anchor="middle" dominant-baseline="middle">62</text><text x="97.4" y="110.2" text-anchor="middle" dominant-baseline="middle">63</text><text x="110.2" y="97.4" text-anchor="middle" dominant-baseline="middle">64</text><text x="124.0" y="85.8" text-anchor="middle" dominant-baseline="middle">65</text><text x="138.8" y="75.4" text-anchor="middle" dominant-baseline="middle">66</text><text x="154.4" y="66.4" text-anchor="middle" dominant-baseline="middle">67</text><text x="170.8" y="58.8" text-anchor="middle" dominant-baseline="middle">68</text><text x="187.8" y="52.6" text-anchor="middle" dominant-baseline="middle">69</text><text x="205.2" y="47.9" text-anchor="middle" dominant-baseline="middle">70</text><text x="223.0" y="44.8" text-anchor="middle" dominant-baseline="middle">71</text><text x="241.0" y="43.2" text-anchor="middle" dominant-baseline="middle">72</text></g>
-<circle cx="250" cy="250" r="55" fill="#111827" stroke="#fff" stroke-width="6"/>
-<text id="center" x="250" y="250" text-anchor="middle" dominant-baseline="middle" style="font-size:25px;fill:#fff">?</text>
+<svg id="wheel" viewBox="0 0 500 500" aria-label="Ruleta del 1 al 72">
+<g id="rotor"></g>
+<circle cx="250" cy="250" r="42" fill="#222" stroke="#fff" stroke-width="4"/>
+<text id="center" x="250" y="260" text-anchor="middle" font-size="34" font-weight="bold" fill="#fff">?</text>
 </svg>
 </div>
-<div id="result">—</div>
-<div id="status">Lista para girar 😎</div>
-<button id="spin" type="button">🎰 GIRAR</button>
-</main>
+<button id="spin">🎰 GIRAR</button>
+<div id="result"></div>
+
 <script>
-(function(){
-var wheel=document.getElementById('wheel');
-var result=document.getElementById('result');
-var center=document.getElementById('center');
-var status=document.getElementById('status');
-var spin=document.getElementById('spin');
-var rotation=0,busy=false;
-spin.addEventListener('click',function(){
- if(busy)return;
- busy=true;spin.disabled=true;status.textContent='Girando... 🔥';
- var n=Math.floor(Math.random()*72)+1;
- var numberAngle=(n-.5)*5-90;
- rotation += 360*(6+Math.floor(Math.random()*3)) - numberAngle;
- wheel.style.transform='rotate('+rotation+'deg)';
- setTimeout(function(){
-   result.textContent=n;center.textContent=n;status.textContent='Salió el '+n+' 😎';
-   busy=false;spin.disabled=false;
- },4600);
+const NS="http://www.w3.org/2000/svg";
+const rotor=document.getElementById("rotor");
+const wheel=document.getElementById("wheel");
+const center=document.getElementById("center");
+const result=document.getElementById("result");
+const spin=document.getElementById("spin");
+
+const N=72, cx=250, cy=250, R=238;
+const step=360/N;
+
+// Build wheel. Number 1 is centered at the top (the pointer position).
+for(let i=0;i<N;i++){
+  const a1=(i*step-step/2-90)*Math.PI/180;
+  const a2=((i+1)*step-step/2-90)*Math.PI/180;
+  const x1=cx+R*Math.cos(a1), y1=cy+R*Math.sin(a1);
+  const x2=cx+R*Math.cos(a2), y2=cy+R*Math.sin(a2);
+  const path=document.createElementNS(NS,"path");
+  path.setAttribute("d",`M ${cx} ${cy} L ${x1} ${y1} A ${R} ${R} 0 0 1 ${x2} ${y2} Z`);
+  path.setAttribute("fill",i%2?"#222":"#555");
+  path.setAttribute("stroke","#fff");
+  path.setAttribute("stroke-width","1");
+  rotor.appendChild(path);
+
+  // Text is rotated with the wheel; each number is centered in its sector.
+  const ang=i*step-90;
+  const rad=(ang)*Math.PI/180;
+  const tr=190;
+  const tx=cx+tr*Math.cos(rad), ty=cy+tr*Math.sin(rad);
+  const t=document.createElementNS(NS,"text");
+  t.textContent=i+1;
+  t.setAttribute("x",tx); t.setAttribute("y",ty+6);
+  t.setAttribute("text-anchor","middle");
+  t.setAttribute("font-size","11");
+  t.setAttribute("font-weight","bold");
+  t.setAttribute("fill","#fff");
+  t.setAttribute("transform",`rotate(${ang+90} ${tx} ${ty})`);
+  rotor.appendChild(t);
+}
+
+let rotation=0;
+let locked=false;
+
+spin.addEventListener("click",()=>{
+  if(locked)return;
+  locked=true;
+  spin.disabled=true;
+  result.textContent="";
+  center.textContent="?";
+
+  // Choose the result first, then rotate so THAT sector's center lands
+  // exactly at the fixed pointer (12 o'clock).
+  const chosen=Math.floor(Math.random()*N)+1;
+  const targetIndex=chosen-1;
+
+  // Current visual angle of the chosen sector center is targetIndex*step.
+  // We need its final angle to be 0, so add the required delta.
+  const currentMod=((rotation%360)+360)%360;
+  const desiredDelta=((360-(targetIndex*step+currentMod))%360);
+  const extraTurns=(5+Math.floor(Math.random()*3))*360;
+  rotation += extraTurns + desiredDelta;
+
+  wheel.style.transform=`rotate(${rotation}deg)`;
+
+  setTimeout(()=>{
+    center.textContent=chosen;
+    result.textContent=`Resultado: ${chosen}`;
+    locked=false;
+    spin.disabled=false;
+  },4900);
 });
-})();
 </script>
 </body>
 </html>
